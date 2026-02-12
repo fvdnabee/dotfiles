@@ -123,6 +123,7 @@ plugins=(
   poetry  # Must save output of `poetry completions zsh` to $ZSH_CUSTOM/plugins/poetry/_poetry, see https://python-poetry.org/docs/#enable-tab-completion-for-bash-fish-or-zsh
   # yarn-autocompletions  # https://github.com/g-plane/zsh-yarn-autocompletions
   nvm
+  npm  # for completions?
 )
 
 # User configuration
@@ -162,6 +163,9 @@ alias fgrep='fgrep --ignore-case -I -n --color=auto'
 alias egrep='egrep --color=auto'
 alias tmux='TERM=xterm-256color tmux'
 alias gstuno='git status -uno'
+alias ghprv='gh pr view'
+alias ghprvw='gh pr view --web'
+alias pr='gh pr view --web || (echo '\''opening pull requests overview'\'' && gh pr list --web)'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
@@ -221,3 +225,9 @@ source /usr/share/nvm/init-nvm.sh --no-use
 
 # expose python scripts of user-local python install:
 export PATH=/home/fvdnabee/.local/bin:$PATH
+
+# Render tabs in less pager output as four spaces, used in git diff:
+# cfr. https://stackoverflow.com/a/39352670
+export LESS=Rx2
+# ripgrep:
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rc"
