@@ -57,9 +57,9 @@ Plug 'morhetz/gruvbox'
 Plug 'hashivim/vim-terraform'
 
 " Javascript:
-" Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'pangloss/vim-javascript'    " JavaScript support
 " Plug 'leafgarland/typescript-vim' " TypeScript syntax
-Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+" Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 
 " Debugging:
 " vimspector_enable_mappings must be set before loading vimspector:
@@ -181,7 +181,7 @@ map <Leader>"  :split<cr>
 " Easier navigation between buffers:
 " map <Leader>p :bn<cr>  " use tpope/vim-unimpiared
 " map <Leader>o :bp<cr>  " use tpope/vim-unimpiared
-" map <Leader>d :bd<cr>
+map <Leader>d :bd<cr>
 " Just use :bd<cr>
 " map <Leader>d :bp\|bd #<cr> " Keep window open, only close buffer
 command! Bd bp|bd #
@@ -283,6 +283,9 @@ set tags=tags;/
 " Make sure the directory exists, or vim won't use it (it won't create it for you).
 " https://vi.stackexchange.com/a/16047
 set directory^=$HOME/.vim/swap//
+
+" Don't restore missing <EOL> at end of file when writing a file, instead preserve the situatuon from the original file.
+set nofixendofline
 " }}}
 " coc.nvim {{{
 let g:coc_global_extensions = [
@@ -295,6 +298,7 @@ let g:coc_global_extensions = [
 \ 'coc-prettier',
 \ 'coc-html',
 \ 'coc-css',
+\ 'coc-phpls',
 \ ]
 
 " remap for complete to use tab and <cr>
@@ -566,6 +570,7 @@ augroup qf
     autocmd!
     autocmd FileType qf set nobuflisted
 augroup END
+:set exrc "Load local vimrc, cfr. https://superuser.com/a/598970
 " }}}
 " Misc plugins {{{
 " Use clang autocomplete
